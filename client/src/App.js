@@ -5,12 +5,10 @@ import {
   Switch
 } from 'react-router-dom';
 import Header from './components/Header';
-// import Public from './components/Public';
 import Courses from './components/Courses';
 import UserSignIn from './components/UserSignIn';
 import UserSignUp from './components/UserSignUp';
 import UserSignOut from './components/UserSignOut';
-// import Authenticated from './components/Authenticated';
 import CreateCourse from './components/CreateCourse';
 import CourseDetail from './components/CourseDetail';
 import UpdateCourse from './components/UpdateCourse';
@@ -22,7 +20,6 @@ import withContext from './Context';
 import PrivateRoute from './PrivateRoute';
 
 const HeaderWithContext = withContext(Header);
-// const AuthWithContext = withContext(Authenticated);
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
 const UserSignOutWithContext = withContext(UserSignOut);

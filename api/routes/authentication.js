@@ -60,12 +60,5 @@ const authenticateUser = async (req, res, next) => {
     }
   };
 
-// router.get('/', authenticateUser, (req, res) => {
-//     const user = req.currentUser;
-//     res.json({
-//         name: user.name,
-//         username: user.emailAddress
-//     })
-// })
 
 module.exports = authenticateUser;

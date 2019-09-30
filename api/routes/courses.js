@@ -4,7 +4,7 @@ const { Course, User } = require('../models');
 const authenticateUser = require('./authentication');
 const { check, validationResult } = require('express-validator');
 
-// Filter out the following in the Courses endpoint GET routes.
+// Filters out the following the Courses endpoint GET routes.
 const filterOut = {
   include: [{
     model: User,
@@ -12,7 +12,7 @@ const filterOut = {
   }],
   attributes: {exclude: ['createdAt', 'updatedAt']}
 }
-// Send a GET request to /courses to READ a list of courses (including the user that owns each course)
+// Sends a GET request to /courses to READ a list of courses including the user that owns each course
 router.get('/', (req, res, next)=>{
   Course.findAll(filterOut)
   .then(courses => {
@@ -24,7 +24,7 @@ router.get('/', (req, res, next)=>{
   }).catch(err => res.json({message: err.message}));
 });
 
-// Send a GET request to /courses/:id to READ(view) a course (including the user that owns the course) for the provided course ID
+// Sends a GET request to /courses/:id to view a course including the user that owns the course for the provided course ID
 router.get('/:id', (req, res, next)=>{
   Course.findByPk(req.params.id, filterOut)
   .then(course => {
@@ -37,7 +37,7 @@ router.get('/:id', (req, res, next)=>{
 });
 
 
-//Send a POST request to /courses to CREATE a new course, sets the Location header to the URI for the course, and returns no content
+//Sends a POST request to /courses to CREATE a new course, sets the header to the URI for the course, returns no content
 router.post('/', [
   // Validations
   check('title')
@@ -83,7 +83,7 @@ router.post('/', [
   }
 }); 
 
-// Send a PUT request to /courses/:id to UPDATE (edit) a course and returns no content
+// Sends a PUT request to /courses/:id to edit a course and returns no content
 router.put('/:id', [
   // Validations
   check('title')

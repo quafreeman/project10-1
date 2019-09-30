@@ -5,7 +5,7 @@ const bcryptjs = require('bcryptjs');
 const authenticateUser = require('./authentication');
 const { check, validationResult } = require('express-validator');
 
-// Send a GET request to /users to return the currently authenticated user
+// Sends a GET request to /users to return the authenticated user
 router.get('/', authenticateUser, (req, res, next) => {
     return res.status(200).json({    
     userId: req.currentUser.get("id"),
@@ -15,9 +15,9 @@ router.get('/', authenticateUser, (req, res, next) => {
   });
 });
 
-// Send a POST request to /users to  CREATE a new user, sets the Location header to "/", and returns no content 
+// Sends a POST request to /users to  CREATE a new user, it sets the Location header to "/" and returns no content 
 router.post('/', [
-  // Validations
+  //Validations
   check('firstName')
     .exists({ checkNull: true, checkFalsy: true })
     .withMessage('Please provide a value for "first name"'),
@@ -35,7 +35,7 @@ router.post('/', [
     .isLength({ min: 8, max: 20 })
     .withMessage('Please provide a "password" that is between 8 and 20 characters in length')
 ], async (req, res, next)=>{
-  // Attempt to get the validation result from the Request object.
+  // To get the validation result from the Request object.
   const errors = validationResult(req);
 
   // If there are validation errors...
@@ -61,7 +61,7 @@ router.post('/', [
     try {
       await user.save();
       res.location('/');
-    // Set the status to 201 Created and end the response.
+    // Sets the status to 201 Created and ends the response.
       res.status(201).end();
     } catch (err) {
       if(err.name === 'SequelizeValidationError') {
