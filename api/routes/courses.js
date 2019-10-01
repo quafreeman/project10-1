@@ -150,7 +150,6 @@ router.delete("/:id", authenticateUser, (req, res, next) => {
     const error = new Error('Server error');
     error.status = 500;
     next(error);
-    // res.json({message: err.message});
   });
 });
 

@@ -17,7 +17,7 @@ router.get('/', authenticateUser, (req, res, next) => {
 
 // Sends a POST request to /users to  CREATE a new user, it sets the Location header to "/" and returns no content 
 router.post('/', [
-  //Validations
+  ///*Validations
   check('firstName')
     .exists({ checkNull: true, checkFalsy: true })
     .withMessage('Please provide a value for "first name"'),
@@ -43,7 +43,7 @@ router.post('/', [
     // Use the Array `map()` method to get a list of error messages.
     const errorMessages = errors.array().map(error => error.msg);
     
-    // Return the validation errors to the client.
+    // Returns the validation errors to the client.
     const err = new Error();
     err.status = 400;
     err.errors=errorMessages;
@@ -65,7 +65,7 @@ router.post('/', [
       res.status(201).end();
     } catch (err) {
       if(err.name === 'SequelizeValidationError') {
-        res.status(400).json({message: "Hmm...Something's not right. Please fill out all the required fields."});
+        res.status(400).json({message: "Something's not right. Please fill out all the required fields."});
         next();
       } else {
         res.status(400).json({message: 'Sorry that email address already exists. Try again.'});
